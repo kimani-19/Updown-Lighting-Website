@@ -75,9 +75,9 @@ const Gallery = () => {
     { value: 'landscaping', label: 'Landscaping' }
   ];
 
-  const filteredImages = selectedCategory === 'all' 
+  const filteredImages = Array.isArray(images) ? (selectedCategory === 'all' 
     ? images 
-    : images.filter(image => image.category === selectedCategory);
+    : images.filter(image => image.category === selectedCategory)) : [];
 
   return (
     <div className="gallery">
