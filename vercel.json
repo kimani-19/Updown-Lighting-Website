@@ -4,11 +4,7 @@
     {
       "src": "client/package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "installCommand": "npm install",
-        "buildCommand": "npm run build",
-        "outputDirectory": "build"
-      }
+      "config": { "distDir": "build" }
     },
     {
       "src": "server/index.js",
@@ -21,8 +17,28 @@
       "dest": "server/index.js"
     },
     {
+      "src": "/static/(.*)",
+      "dest": "/client/build/static/$1"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/client/build/manifest.json"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/client/build/favicon.ico"
+    },
+    {
+      "src": "/logo192.png",
+      "dest": "/client/build/logo192.png"
+    },
+    {
+      "src": "/logo512.png",
+      "dest": "/client/build/logo512.png"
+    },
+    {
       "src": "/(.*)",
-      "dest": "client/build/$1"
+      "dest": "/client/build/index.html"
     }
   ]
 }
