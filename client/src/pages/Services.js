@@ -16,19 +16,7 @@ const Services = () => {
       ],
     },
     {
-      icon: '🏢',
-      title: 'Commercial Installation',
-      description: 'Professional Christmas lighting for businesses, offices, and commercial properties.',
-      features: [
-        'Large-scale installations',
-        'Brand-compliant designs',
-        'Energy-efficient LED systems',
-        'Maintenance packages available',
-        'Flexible scheduling'
-      ],
-    },
-    {
-      icon: '🎨',
+      icon: '',
       title: 'Custom Design',
       description: 'Unique and creative Christmas light designs tailored to your vision and property.',
       features: [
