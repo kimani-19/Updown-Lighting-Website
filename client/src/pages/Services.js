@@ -14,7 +14,6 @@ const Services = () => {
         'Timer and control systems',
         'Professional installation'
       ],
-      price: 'Starting at $299'
     },
     {
       icon: '🏢',
@@ -27,7 +26,6 @@ const Services = () => {
         'Maintenance packages available',
         'Flexible scheduling'
       ],
-      price: 'Starting at $599'
     },
     {
       icon: '🎨',
@@ -40,7 +38,6 @@ const Services = () => {
         'Architectural highlighting',
         'Personalized themes'
       ],
-      price: 'Starting at $199'
     },
     {
       icon: '🔧',
@@ -53,7 +50,6 @@ const Services = () => {
         'Weather damage repair',
         'Performance optimization'
       ],
-      price: 'Starting at $99'
     },
     {
       icon: '📅',
@@ -66,7 +62,6 @@ const Services = () => {
         'Damage-free mounting',
         'Cleanup included'
       ],
-      price: 'Starting at $199'
     },
     {
       icon: '💡',
@@ -79,7 +74,6 @@ const Services = () => {
         'Budget planning',
         'Timeline coordination'
       ],
-      price: 'Starting at $99'
     }
   ];
 
@@ -123,8 +117,6 @@ const Services = () => {
                     ))}
                   </ul>
                 </div>
-                
-                <div className="service-price">{service.price}</div>
                 
                 <Link to="/contact" className="btn btn-primary">
                   Get Quote for This Service
