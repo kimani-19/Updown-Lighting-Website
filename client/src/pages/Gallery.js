@@ -7,21 +7,21 @@ const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get('/api/gallery');
+        setImages(response.data);
+      } catch (error) {
+        console.error('Error fetching images:', error);
+        // Fallback to sample images if API fails
+        setImages(getSampleImages());
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchImages();
   }, []);
-
-  const fetchImages = async () => {
-    try {
-      const response = await axios.get('/api/gallery');
-      setImages(response.data);
-    } catch (error) {
-      console.error('Error fetching images:', error);
-      // Fallback to sample images if API fails
-      setImages(getSampleImages());
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const getSampleImages = () => [
     {
