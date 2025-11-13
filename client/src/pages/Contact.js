@@ -12,8 +12,8 @@ const Contact = () => {
     {
       icon: '✉️',
       title: 'Email',
-      details: ['info@updownlighting.com', 'quotes@updownlighting.com', 'support@updownlighting.com'],
-      action: 'mailto:info@updownlighting.com'
+      details: ['updownlighting19.com'],
+      action: 'mailto:updownlighting19.com'
     },
     {
       icon: '📍',
@@ -136,7 +136,7 @@ const Contact = () => {
                 <div className="quick-contact-item">
                   <h4>✉️ Email Us</h4>
                   <p>Send us an email anytime</p>
-                  <a href="mailto:info@updownlighting.com" className="btn btn-secondary">info@updownlighting.com</a>
+                  <a href="mailto:updownlighting19.com" className="btn btn-secondary">updownlighting19.com</a>
                 </div>
                 
                 <div className="quick-contact-item">
