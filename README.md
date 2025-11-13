@@ -293,7 +293,7 @@ This project is licensed under the MIT License.
 
 For support or questions:
 
-- Email: info@updownlighting.com
+- Email: updownlighting19@gmail.com
 - Phone: (651)497-4609
 - Website: [Up-Down-Lighting](https://updownlighting.com)
 

@@ -23,7 +23,7 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Contact Info</h3>
             <p>📞 (651) 497-9609</p>
-            <p>✉️ info@updownlighting.com</p>
+            <p>✉️ updownlighting19@gmail.com</p>
             <p>📍 Bayport, Minnesota</p>
             <p>🕒 Mon-Fri: 8AM-6PM</p>
             <p>🕒 Sat-Sun: 9AM-4PM</p>

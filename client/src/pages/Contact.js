@@ -12,8 +12,8 @@ const Contact = () => {
     {
       icon: '✉️',
       title: 'Email',
-      details: ['updownlighting19.com'],
-      action: 'mailto:updownlighting19.com'
+      details: ['updownlighting19@gmail.com'],
+      action: 'mailto:updownlighting19@gmail.com'
     },
     {
       icon: '📍',
