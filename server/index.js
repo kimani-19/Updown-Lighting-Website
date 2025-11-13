@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const nodemailer = require('nodemailer');
 const path = require('path');
+const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,29 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
+
+// Google Reviews Route
+app.get('/api/reviews', async (req, res) => {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  const placeId = process.env.PLACE_ID;
+  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,reviews&key=${apiKey}`;
+
+  if (!apiKey || !placeId) {
+    return res.status(500).json({ error: 'API key or Place ID is not configured on the server.' });
+  }
+
+  try {
+    const response = await axios.get(url);
+    if (response.data.result && response.data.result.reviews) {
+      res.json(response.data.result.reviews);
+    } else {
+      res.json([]);
+    }
+  } catch (error) {
+    console.error('Error fetching Google reviews:', error.message);
+    res.status(500).json({ error: 'Failed to fetch reviews from Google.' });
+  }
+});
 
 // Database setup
 const db = new sqlite3.Database('./database.sqlite', (err) => {

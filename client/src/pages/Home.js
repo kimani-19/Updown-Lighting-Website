@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Chatbot from '../components/Chatbot';
+import GoogleReviews from '../components/GoogleReviews';
 
 const Home = () => {
 
@@ -110,6 +111,13 @@ const Home = () => {
               <Link to="/about-us" className="btn btn-primary">Learn More</Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Google Reviews Section */}
+      <section className="section">
+        <div className="container">
+          <GoogleReviews />
         </div>
       </section>
 
