@@ -46,7 +46,7 @@ const Gallery = () => {
   useEffect(() => {
     setImages(allImages);
     setLoading(false);
-  }, []);
+  }, [allImages]);
 
   const categories = [
     { value: 'all', label: 'All Projects' },
