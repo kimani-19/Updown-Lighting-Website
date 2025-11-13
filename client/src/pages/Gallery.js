@@ -71,7 +71,6 @@ const Gallery = () => {
   const categories = [
     { value: 'all', label: 'All Projects' },
     { value: 'residential', label: 'Residential' },
-    { value: 'commercial', label: 'Commercial' },
     { value: 'landscaping', label: 'Landscaping' }
   ];
 
@@ -229,18 +228,7 @@ const Gallery = () => {
             </div>
             
             <div className="before-after-item">
-              <div className="before-after-image">
-                <div className="image-placeholder">
-                  <h4>Before</h4>
-                  <p>Dark commercial building</p>
-                </div>
-              </div>
-              <div className="before-after-image">
-                <div className="image-placeholder">
-                  <h4>After</h4>
-                  <p>Festive business attraction</p>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>
