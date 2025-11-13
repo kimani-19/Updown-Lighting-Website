@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section">
             <h3>Up-Down-Lighting</h3>
-            <p>Professional Christmas lights installation service in Bayport, Minnesota and surrounding areas. Making your holidays bright since 2020.</p>
+            <p>Professional Christmas lights installation service in Bayport, Minnesota and surrounding areas.</p>
           </div>
           
           <div className="footer-section">

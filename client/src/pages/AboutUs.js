@@ -5,7 +5,7 @@ import aboutImage from '../assets/images/about-image.jpeg';
 const AboutUs = () => {
   const Owner = [
     {
-      name: 'Kemal Munn',
+      name: 'Kj Munn',
       role: 'Founder & Lead Installer',
       experience: '5+ years',
       specialties: ['Commercial installations', 'Custom designs', 'LED systems'],
@@ -151,7 +151,7 @@ const AboutUs = () => {
         <div className="container">
           <h2 className="section-title">Meet Our Owner</h2>
           <p className="section-subtitle">
-            Kemal Munn is the dedicated owner of UpDown Lighting, bringing expert leadership and a passion for creating magical holiday displays throughout the Twin Cities East Metro.
+            Kj Munn is the dedicated owner of UpDown Lighting, bringing expert leadership and a passion for creating magical holiday displays throughout the Twin Cities East Metro.
           </p>
           
           <div className="grid grid-2">
@@ -176,27 +176,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Company Milestones */}
-      <section className="section" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="container">
-          <h2 className="section-title">Our Journey</h2>
-          <p className="section-subtitle">
-            Key milestones in our company's growth and commitment to serving our community.
-          </p>
-          
-          <div className="timeline">
-            {milestones.map((milestone, index) => (
-              <div key={index} className="timeline-item">
-                <div className="timeline-year">{milestone.year}</div>
-                <div className="timeline-content">
-                  <h3>{milestone.event}</h3>
-                  <p>{milestone.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Certifications & Insurance */}
       <section className="section">

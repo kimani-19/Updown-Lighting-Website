@@ -206,7 +206,7 @@ const Services = () => {
             </p>
             <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/contact" className="btn btn-secondary">Get Free Quote</Link>
-              <a href="tel:5551234567" className="btn btn-secondary">Call (555) 123-4567</a>
+              <a href="tel:6514974609" className="btn btn-secondary">Call (651)497-4609</a>
             </div>
           </div>
         </div>

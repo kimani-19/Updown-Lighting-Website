@@ -130,7 +130,7 @@ const Contact = () => {
                 <div className="quick-contact-item">
                   <h4>📞 Call Now</h4>
                   <p>Speak directly with our team</p>
-                  <a href="tel:5551234567" className="btn btn-secondary">(555) 123-4567</a>
+                  <a href="tel:6514974609" className="btn btn-secondary">(651)497-4609</a>
                 </div>
                 
                 <div className="quick-contact-item">

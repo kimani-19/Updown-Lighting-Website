@@ -14,12 +14,14 @@ A professional Christmas lights installation service website for Bayport, Minnes
 ## 🚀 Tech Stack
 
 ### Frontend
+
 - **React 18** - Modern UI library
 - **React Router** - Client-side routing
 - **Axios** - HTTP client for API calls
 - **CSS3** - Custom styling with CSS variables
 
 ### Backend
+
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web framework
 - **SQLite3** - Lightweight database
@@ -59,16 +61,19 @@ up-down-lighting/
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
+
 - Node.js (v14 or higher)
 - npm or yarn
 
 ### 1. Clone the Repository
+
 ```bash
 git clone <repository-url>
 cd up-down-lighting
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 # Install root dependencies
 npm install
@@ -80,7 +85,9 @@ cd ..
 ```
 
 ### 3. Environment Configuration
+
 Create a `.env` file in the server directory:
+
 ```env
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-password
@@ -90,6 +97,7 @@ DB_PATH=./database.sqlite
 ```
 
 ### 4. Start the Application
+
 ```bash
 # Development mode (runs both frontend and backend)
 npm run dev
@@ -105,6 +113,7 @@ npm run client
 ## 📱 Pages Overview
 
 ### 🏠 Home Page
+
 - Hero section with call-to-action
 - Free quote request form with validation
 - Preview cards for all other pages
@@ -112,29 +121,34 @@ npm run client
 - Responsive design
 
 ### 🔧 Services Page
+
 - Detailed service offerings
 - Pricing information
 - Process explanation
 - Why choose us section
 
 ### 📍 Service Areas Page
+
 - Coverage map and areas served
 - City-specific information
 - Special services by area
 
 ### 📞 Contact Page
+
 - Multiple contact methods
 - Contact form with validation
 - FAQ section
 - Emergency service notice
 
 ### 👥 About Us Page
+
 - Company story and values
 - Team member profiles
 - Company timeline
 - Certifications and insurance
 
 ### 📸 Gallery Page
+
 - Project showcase with filtering
 - Before/after comparisons
 - Customer testimonials
@@ -143,12 +157,14 @@ npm run client
 ## 🎨 Design Features
 
 ### Color Scheme
+
 - **Primary Green**: #228B22 (Christmas theme)
 - **Dark Green**: #006400
 - **Gold**: #FFD700 (Accent color)
 - **Red**: #DC143C (Holiday accent)
 
 ### Typography
+
 - **Font**: Inter (Google Fonts)
 - **Responsive**: Mobile-first design
 - **Accessibility**: WCAG compliant
@@ -156,23 +172,28 @@ npm run client
 ## 🔧 API Endpoints
 
 ### Quotes
+
 - `GET /api/quotes` - Retrieve all quotes
 - `POST /api/quotes` - Submit new quote
 
 ### Contact
+
 - `GET /api/contact` - Retrieve all messages
 - `POST /api/contact` - Submit new message
 
 ### Gallery
+
 - `GET /api/gallery` - Retrieve gallery images
 - `POST /api/gallery` - Add new image (admin)
 
 ### Chatbot
+
 - `POST /api/chatbot` - Chat with AI assistant
 
 ## 📊 Database Schema
 
 ### Quotes Table
+
 ```sql
 CREATE TABLE quotes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -187,6 +208,7 @@ CREATE TABLE quotes (
 ```
 
 ### Contact Messages Table
+
 ```sql
 CREATE TABLE contact_messages (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -199,6 +221,7 @@ CREATE TABLE contact_messages (
 ```
 
 ### Gallery Images Table
+
 ```sql
 CREATE TABLE gallery_images (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -213,6 +236,7 @@ CREATE TABLE gallery_images (
 ## 🚀 Deployment
 
 ### Production Build
+
 ```bash
 # Build the React app
 npm run build
@@ -222,7 +246,9 @@ npm start
 ```
 
 ### Environment Variables
+
 Ensure all environment variables are set for production:
+
 - `EMAIL_USER` - Gmail address for notifications
 - `EMAIL_PASS` - Gmail app password
 - `PORT` - Server port (default: 5000)
@@ -231,6 +257,7 @@ Ensure all environment variables are set for production:
 ## 🧪 Testing
 
 ### Manual Testing Checklist
+
 - [ ] All pages load correctly
 - [ ] Navigation works on all devices
 - [ ] Forms submit successfully
@@ -265,8 +292,9 @@ This project is licensed under the MIT License.
 ## 📞 Support
 
 For support or questions:
+
 - Email: info@updownlighting.com
-- Phone: (555) 123-4567
+- Phone: (651)497-4609
 - Website: [Up-Down-Lighting](https://updownlighting.com)
 
 ---

@@ -47,7 +47,7 @@ const Chatbot = () => {
     } catch (error) {
       const errorMessage = {
         type: 'bot',
-        content: 'Sorry, I encountered an error. Please try again or contact us directly at (555) 123-4567.'
+        content: 'Sorry, I encountered an error. Please try again or contact us directly at (651)497-4609.'
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {

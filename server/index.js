@@ -238,9 +238,9 @@ app.post('/api/chatbot', (req, res) => {
     'hello': 'Hello! Welcome to Up-Down-Lighting. How can I help you with your Christmas lights installation needs?',
     'price': 'Our pricing varies based on the size of your property and type of installation. Contact us for a free quote!',
     'service': 'We provide professional Christmas lights installation services in Bayport, Minnesota and surrounding areas.',
-    'contact': 'You can reach us at (555) 123-4567 or email us at info@updownlighting.com',
+    'contact': 'You can reach us at (651)497-4609 or email us at info@updownlighting.com',
     'area': 'We serve Bayport, Minnesota and surrounding areas within a 25-mile radius.',
-    'default': 'Thank you for your message! Our team will get back to you soon. For immediate assistance, call (555) 123-4567.'
+    'default': 'Thank you for your message! Our team will get back to you soon. For immediate assistance, call (651)497-4609.'
   };
 
   const lowerMessage = message.toLowerCase();

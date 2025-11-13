@@ -156,7 +156,7 @@ const Gallery = () => {
             
             <div className="cta-buttons">
               <a href="/contact" className="btn btn-primary">Get Free Quote</a>
-              <a href="tel:5551234567" className="btn btn-secondary">Call (555) 123-4567</a>
+              <a href="tel:6514974609" className="btn btn-secondary">Call (651)497-4609</a>
             </div>
           </div>
         </div>
