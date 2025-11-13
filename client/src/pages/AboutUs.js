@@ -47,25 +47,7 @@ const AboutUs = () => {
     }
   ];
 
-  const milestones = [
-    {
-      year: '2024',
-      event: 'Company Founded',
-      description: 'Started Up-Down-Lighting with a vision to bring professional Christmas lighting to Bayport and surrounding areas.'
-    },
-    {
-      year: '2024',
-      event: 'First Customers Served',
-      description: 'Completed our first residential and commercial Christmas lighting installations, earning 5-star reviews from local clients.'
-    },
-    
-    {
-      year: '2024',
-      event: 'Expanded Service Area',
-      description: 'Started serving the entire 25-mile radius around Bayport, including Stillwater, Lake Elmo, Woodbury, and more.'
-    },
   
-  ];
 
   return (
     <div className="about-us">
