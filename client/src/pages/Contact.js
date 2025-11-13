@@ -6,8 +6,8 @@ const Contact = () => {
     {
       icon: '📞',
       title: 'Phone',
-      details: ['(555) 123-4567', 'Mon-Fri: 8AM-6PM', 'Sat-Sun: 9AM-4PM'],
-      action: 'tel:5551234567'
+      details: ['(651)597-9609', 'Mon-Fri: 8AM-6PM', 'Sat-Sun: 9AM-4PM'],
+      action: 'tel:6515979609'
     },
     {
       icon: '✉️',
