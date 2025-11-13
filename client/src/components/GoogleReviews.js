@@ -4,14 +4,21 @@ import axios from 'axios';
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         const response = await axios.get('/api/reviews');
-        setReviews(response.data);
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
+        if (Array.isArray(response.data)) {
+          setReviews(response.data);
+        } else {
+          setError('Could not load reviews at this time.');
+          console.error('Received non-array response for reviews:', response.data);
+        }
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+        setError('Failed to fetch reviews.');
       } finally {
         setLoading(false);
       }
@@ -37,7 +44,9 @@ const GoogleReviews = () => {
       <h2 className="section-title">What Our Clients Say</h2>
       {loading ? (
         <p>Loading reviews...</p>
-      ) : (
+      ) : error ? (
+        <p>{error}</p>
+      ) : reviews.length > 0 ? (
         <div className="reviews-container">
           {reviews.map((review) => (
             <div key={review.time} className="review-card">
@@ -53,6 +62,8 @@ const GoogleReviews = () => {
             </div>
           ))}
         </div>
+      ) : (
+        <p>No reviews available at the moment.</p>
       )}
     </div>
   );
