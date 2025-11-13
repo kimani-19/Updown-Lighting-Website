@@ -1,72 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get('/api/gallery');
-        setImages(response.data);
-      } catch (error) {
-        console.error('Error fetching images:', error);
-        // Fallback to sample images if API fails
-        setImages(getSampleImages());
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchImages();
-  }, []);
-
-  const getSampleImages = () => [
+  const allImages = [
     {
       id: 1,
       title: 'Classic Roofline Installation',
       description: 'Traditional warm white LED lights on a beautiful Bayport home',
-      image_url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23000" width="400" height="300"/><rect fill="%23888" x="50" y="200" width="300" height="80"/><rect fill="%23333" x="100" y="150" width="200" height="50"/><circle fill="%23FFD700" cx="120" cy="170" r="3"/><circle fill="%23FFD700" cx="140" cy="170" r="3"/><circle fill="%23FFD700" cx="160" cy="170" r="3"/><circle fill="%23FFD700" cx="180" cy="170" r="3"/><circle fill="%23FFD700" cx="200" cy="170" r="3"/><circle fill="%23FFD700" cx="220" cy="170" r="3"/><circle fill="%23FFD700" cx="240" cy="170" r="3"/><circle fill="%23FFD700" cx="260" cy="170" r="3"/><circle fill="%23FFD700" cx="280" cy="170" r="3"/></svg>',
+      image_url: '/images/gallery/gallery1.jpeg',
       category: 'residential'
     },
     {
       id: 2,
       title: 'Colorful Holiday Display',
       description: 'Multi-colored LED lights creating a festive atmosphere',
-      image_url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23000" width="400" height="300"/><rect fill="%23888" x="50" y="200" width="300" height="80"/><rect fill="%23333" x="100" y="150" width="200" height="50"/><circle fill="%23DC143C" cx="120" cy="170" r="3"/><circle fill="%23FFD700" cx="140" cy="170" r="3"/><circle fill="%2300FF00" cx="160" cy="170" r="3"/><circle fill="%2300BFFF" cx="180" cy="170" r="3"/><circle fill="%23FF69B4" cx="200" cy="170" r="3"/><circle fill="%23FFD700" cx="220" cy="170" r="3"/><circle fill="%23DC143C" cx="240" cy="170" r="3"/><circle fill="%2300FF00" cx="260" cy="170" r="3"/><circle fill="%2300BFFF" cx="280" cy="170" r="3"/></svg>',
+      image_url: '/images/gallery/gallery2.jpeg',
       category: 'residential'
     },
     {
       id: 3,
-      title: 'Commercial Building Lighting',
+      title: 'Another beautiful home',
       description: 'Professional lighting installation for a Stillwater business',
-      image_url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23000" width="400" height="300"/><rect fill="%23666" x="50" y="120" width="300" height="160"/><rect fill="%23444" x="70" y="140" width="40" height="40"/><rect fill="%23444" x="130" y="140" width="40" height="40"/><rect fill="%23444" x="190" y="140" width="40" height="40"/><rect fill="%23444" x="250" y="140" width="40" height="40"/><rect fill="%23444" x="310" y="140" width="40" height="40"/><circle fill="%23FFD700" cx="90" cy="130" r="2"/><circle fill="%23FFD700" cx="110" cy="130" r="2"/><circle fill="%23FFD700" cx="130" cy="130" r="2"/><circle fill="%23FFD700" cx="150" cy="130" r="2"/><circle fill="%23FFD700" cx="170" cy="130" r="2"/><circle fill="%23FFD700" cx="190" cy="130" r="2"/><circle fill="%23FFD700" cx="210" cy="130" r="2"/><circle fill="%23FFD700" cx="230" cy="130" r="2"/><circle fill="%23FFD700" cx="250" cy="130" r="2"/><circle fill="%23FFD700" cx="270" cy="130" r="2"/><circle fill="%23FFD700" cx="290" cy="130" r="2"/><circle fill="%23FFD700" cx="310" cy="130" r="2"/><circle fill="%23FFD700" cx="330" cy="130" r="2"/><circle fill="%23FFD700" cx="350" cy="130" r="2"/></svg>',
-      category: 'commercial'
+      image_url: '/images/gallery/gallery3.jpeg',
+      category: 'residential'
     },
     {
       id: 4,
       title: 'Custom Tree Lighting',
       description: 'Beautiful tree wrapping with warm white LED lights',
-      image_url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23000" width="400" height="300"/><ellipse fill="%23006600" cx="200" cy="250" rx="80" ry="60"/><ellipse fill="%23006600" cx="200" cy="200" rx="60" ry="50"/><ellipse fill="%23006600" cx="200" cy="150" rx="40" ry="40"/><ellipse fill="%23006600" cx="200" cy="100" rx="20" ry="30"/><circle fill="%23FFD700" cx="180" cy="220" r="2"/><circle fill="%23FFD700" cx="200" cy="220" r="2"/><circle fill="%23FFD700" cx="220" cy="220" r="2"/><circle fill="%23FFD700" cx="190" cy="180" r="2"/><circle fill="%23FFD700" cx="210" cy="180" r="2"/><circle fill="%23FFD700" cx="180" cy="140" r="2"/><circle fill="%23FFD700" cx="200" cy="140" r="2"/><circle fill="%23FFD700" cx="220" cy="140" r="2"/><circle fill="%23FFD700" cx="200" cy="100" r="2"/></svg>',
+      image_url: '/images/gallery/gallery4.jpeg',
       category: 'landscaping'
     },
     {
       id: 5,
-      title: 'Historic Home Lighting',
+      title: 'Daytime Install',
       description: 'Elegant lighting design for a historic Stillwater home',
-      image_url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23000" width="400" height="300"/><rect fill="%23888" x="80" y="180" width="240" height="100"/><rect fill="%23666" x="120" y="140" width="160" height="40"/><rect fill="%23444" x="140" y="120" width="120" height="20"/><circle fill="%23FFD700" cx="140" cy="130" r="2"/><circle fill="%23FFD700" cx="160" cy="130" r="2"/><circle fill="%23FFD700" cx="180" cy="130" r="2"/><circle fill="%23FFD700" cx="200" cy="130" r="2"/><circle fill="%23FFD700" cx="220" cy="130" r="2"/><circle fill="%23FFD700" cx="240" cy="130" r="2"/><circle fill="%23FFD700" cx="260" cy="130" r="2"/></svg>',
+      image_url: '/images/gallery/gallery5.jpeg',
       category: 'residential'
-    },
-    {
-      id: 6,
-      title: 'Modern LED Installation',
-      description: 'Contemporary LED lighting system with smart controls',
-      image_url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23000" width="400" height="300"/><rect fill="%23CCC" x="60" y="200" width="280" height="80"/><rect fill="%23AAA" x="100" y="160" width="200" height="40"/><rect fill="%23888" x="120" y="140" width="160" height="20"/><circle fill="%2300FF00" cx="140" cy="150" r="2"/><circle fill="%2300FF00" cx="160" cy="150" r="2"/><circle fill="%2300FF00" cx="180" cy="150" r="2"/><circle fill="%2300FF00" cx="200" cy="150" r="2"/><circle fill="%2300FF00" cx="220" cy="150" r="2"/><circle fill="%2300FF00" cx="240" cy="150" r="2"/><circle fill="%2300FF00" cx="260" cy="150" r="2"/></svg>',
-      category: 'commercial'
     }
   ];
+
+  useEffect(() => {
+    setImages(allImages);
+    setLoading(false);
+  }, []);
 
   const categories = [
     { value: 'all', label: 'All Projects' },
@@ -74,9 +54,9 @@ const Gallery = () => {
     { value: 'landscaping', label: 'Landscaping' }
   ];
 
-  const filteredImages = Array.isArray(images) ? (selectedCategory === 'all' 
+  const filteredImages = selectedCategory === 'all' 
     ? images 
-    : images.filter(image => image.category === selectedCategory)) : [];
+    : images.filter(image => image.category === selectedCategory);
 
   return (
     <div className="gallery">
@@ -214,21 +194,13 @@ const Gallery = () => {
           <div className="before-after-grid">
             <div className="before-after-item">
               <div className="before-after-image">
-                <div className="image-placeholder">
-                  <h4>Before</h4>
-                  <p>Plain house exterior</p>
-                </div>
+                <img src="/images/gallery/gallery5.jpeg" alt="Before installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                <h4>Before</h4>
               </div>
               <div className="before-after-image">
-                <div className="image-placeholder">
-                  <h4>After</h4>
-                  <p>Magical Christmas display</p>
-                </div>
+                <img src="/images/gallery/gallery2.jpeg" alt="After installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                <h4>After</h4>
               </div>
-            </div>
-            
-            <div className="before-after-item">
-            
             </div>
           </div>
         </div>
