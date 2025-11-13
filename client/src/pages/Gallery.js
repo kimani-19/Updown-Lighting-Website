@@ -1,52 +1,52 @@
 import React, { useState, useEffect } from 'react';
 
+const allImages = [
+  {
+    id: 1,
+    title: 'Classic Roofline Installation',
+    description: 'Traditional warm white LED lights on a beautiful Bayport home',
+    image_url: '/images/gallery/gallery1.jpeg',
+    category: 'residential'
+  },
+  {
+    id: 2,
+    title: 'Colorful Holiday Display',
+    description: 'Multi-colored LED lights creating a festive atmosphere',
+    image_url: '/images/gallery/gallery2.jpeg',
+    category: 'residential'
+  },
+  {
+    id: 3,
+    title: 'Another beautiful home',
+    description: 'Professional lighting installation for a Stillwater business',
+    image_url: '/images/gallery/gallery3.jpeg',
+    category: 'residential'
+  },
+  {
+    id: 4,
+    title: 'Custom Tree Lighting',
+    description: 'Beautiful tree wrapping with warm white LED lights',
+    image_url: '/images/gallery/gallery4.jpeg',
+    category: 'landscaping'
+  },
+  {
+    id: 5,
+    title: 'Daytime Install',
+    description: 'Elegant lighting design for a historic Stillwater home',
+    image_url: '/images/gallery/gallery5.jpeg',
+    category: 'residential'
+  }
+];
+
 const Gallery = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const allImages = [
-    {
-      id: 1,
-      title: 'Classic Roofline Installation',
-      description: 'Traditional warm white LED lights on a beautiful Bayport home',
-      image_url: '/images/gallery/gallery1.jpeg',
-      category: 'residential'
-    },
-    {
-      id: 2,
-      title: 'Colorful Holiday Display',
-      description: 'Multi-colored LED lights creating a festive atmosphere',
-      image_url: '/images/gallery/gallery2.jpeg',
-      category: 'residential'
-    },
-    {
-      id: 3,
-      title: 'Another beautiful home',
-      description: 'Professional lighting installation for a Stillwater business',
-      image_url: '/images/gallery/gallery3.jpeg',
-      category: 'residential'
-    },
-    {
-      id: 4,
-      title: 'Custom Tree Lighting',
-      description: 'Beautiful tree wrapping with warm white LED lights',
-      image_url: '/images/gallery/gallery4.jpeg',
-      category: 'landscaping'
-    },
-    {
-      id: 5,
-      title: 'Daytime Install',
-      description: 'Elegant lighting design for a historic Stillwater home',
-      image_url: '/images/gallery/gallery5.jpeg',
-      category: 'residential'
-    }
-  ];
-
   useEffect(() => {
     setImages(allImages);
     setLoading(false);
-  }, [allImages]);
+  }, []);
 
   const categories = [
     { value: 'all', label: 'All Projects' },
