@@ -194,11 +194,11 @@ const Gallery = () => {
           <div className="before-after-grid">
             <div className="before-after-item">
               <div className="before-after-image">
-                <img src="/images/gallery/gallery5.jpeg" alt="Before installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                <img src="/images/gallery/gallery2.jpeg" alt="Before installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
                 <h4>Before</h4>
               </div>
               <div className="before-after-image">
-                <img src="/images/gallery/gallery2.jpeg" alt="After installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                <img src="/images/gallery/gallery1.jpeg" alt="After installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
                 <h4>After</h4>
               </div>
             </div>
