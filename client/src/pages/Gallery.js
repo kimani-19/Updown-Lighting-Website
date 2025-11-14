@@ -3,15 +3,15 @@ import React, { useState, useEffect } from 'react';
 const allImages = [
   {
     id: 1,
-    title: 'Classic Roofline Installation',
-    description: 'Traditional warm white LED lights on a beautiful Bayport home',
+    title: 'Classic Warm White',
+    description: "Elegant C9 LED bulbs outlining the roofline for a timeless holiday look.",
     image_url: '/images/gallery/gallery1.jpeg',
     category: 'residential'
   },
   {
     id: 2,
-    title: 'Colorful Holiday Display',
-    description: 'Multi-colored LED lights creating a festive atmosphere',
+    title: "The Installation Process",
+    description:  "A behind-the-scenes look at our professional installation process during the day.",
     image_url: '/images/gallery/gallery2.jpeg',
     category: 'residential'
   },
@@ -24,14 +24,14 @@ const allImages = [
   },
   {
     id: 4,
-    title: 'Custom Tree Lighting',
-    description: 'Beautiful tree wrapping with warm white LED lights',
+    title:  "Vibrant & Colorful Display",
+    description: "Dynamic, multi-colored LED lights bring a fun and festive spirit to this home.",
     image_url: '/images/gallery/gallery4.jpeg',
     category: 'landscaping'
   },
   {
     id: 5,
-    title: 'Daytime Install',
+    title:  "Clean & Professional Install",
     description: 'Elegant lighting design for a historic Stillwater home',
     image_url: '/images/gallery/gallery5.jpeg',
     category: 'residential'
