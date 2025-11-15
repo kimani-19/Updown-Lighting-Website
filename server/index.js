@@ -31,6 +31,8 @@ app.get('/api/reviews', async (req, res) => {
     if (response.data.result && response.data.result.reviews) {
       res.json(response.data.result.reviews);
     } else {
+      // Log the actual response from Google if it's not what we expect
+      console.error('Unexpected response from Google Places API:', response.data);
       res.json([]);
     }
   } catch (error) {
