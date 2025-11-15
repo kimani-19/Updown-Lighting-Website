@@ -20,9 +20,14 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('/api/reviews', async (req, res) => {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.PLACE_ID;
+
+  // Enhanced logging to debug environment variables
+  console.log(`Attempting to fetch reviews. PLACE_ID loaded: ${!!placeId}, GOOGLE_PLACES_API_KEY loaded: ${!!apiKey}`);
+
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,reviews&key=${apiKey}`;
 
   if (!apiKey || !placeId) {
+    console.error('Server configuration error: GOOGLE_PLACES_API_KEY or PLACE_ID is missing.');
     return res.status(500).json({ error: 'API key or Place ID is not configured on the server.' });
   }
 
