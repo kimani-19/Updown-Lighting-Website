@@ -42,7 +42,8 @@ app.get('/api/reviews', async (req, res) => {
     }
   } catch (error) {
     console.error('Error fetching Google reviews:', error.message);
-    res.status(500).json({ error: 'Failed to fetch reviews from Google.' });
+    const errorMessage = error.response ? JSON.stringify(error.response.data) : error.message;
+    res.status(500).json({ error: 'Failed to fetch reviews from Google.', details: errorMessage });
   }
 });
 

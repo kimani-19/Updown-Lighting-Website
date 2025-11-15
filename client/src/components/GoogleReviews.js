@@ -18,7 +18,22 @@ const GoogleReviews = () => {
         }
       } catch (err) {
         console.error('Error fetching reviews:', err);
-        setError('Failed to fetch reviews.');
+        const serverError = err.response && err.response.data ? err.response.data.error : 'Failed to fetch reviews.';
+        const errorDetails = err.response && err.response.data ? err.response.data.details : null;
+        
+        let displayError = serverError;
+        if (errorDetails) {
+          try {
+            const parsedDetails = JSON.parse(errorDetails);
+            if(parsedDetails.error_message) {
+              displayError = `Error from Google: ${parsedDetails.error_message}`;
+            }
+          } catch (e) {
+            // Ignore if parsing fails
+          }
+        }
+        
+        setError(displayError);
       } finally {
         setLoading(false);
       }
