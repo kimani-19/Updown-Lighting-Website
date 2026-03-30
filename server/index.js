@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const nodemailer = require('nodemailer');
+const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const dotenv = require('dotenv');
@@ -19,7 +20,13 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Serve the React production build only in production.
+// In development, the React dev server (port 3000) serves the frontend.
+const clientBuildPath = path.join(__dirname, '../client/build');
+if (process.env.NODE_ENV === 'production' && fs.existsSync(clientBuildPath)) {
+  app.use(express.static(clientBuildPath));
+}
 
 // Google Reviews Route
 app.get('/api/reviews', async (req, res) => {
@@ -275,10 +282,12 @@ app.post('/api/chatbot', (req, res) => {
   res.json({ response });
 });
 
-// Serve React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// Serve React app (production only)
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(clientBuildPath, 'index.html'));
+  });
+}
 
 // Start server
 app.listen(PORT, () => {
