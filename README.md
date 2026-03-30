@@ -30,7 +30,7 @@ A professional Christmas lights installation service website for Bayport, Minnes
 
 ## 📁 Project Structure
 
-```
+```text
 up-down-lighting/
 ├── client/                 # React frontend
 │   ├── public/
@@ -86,7 +86,7 @@ cd ..
 
 ### 3. Environment Configuration
 
-Create a `.env` file in the server directory:
+Create a `.env` file (recommended: in the `server/` directory):
 
 ```env
 EMAIL_USER=your-email@gmail.com
@@ -94,7 +94,16 @@ EMAIL_PASS=your-app-password
 PORT=5000
 NODE_ENV=development
 DB_PATH=./database.sqlite
+
+# Google Reviews (Google Places API)
+API_KEY=your-google-places-api-key
+PLACE_ID=your-google-place-id
 ```
+
+Notes:
+
+- The server will load environment variables from either `server/.env` or the repository root `.env`.
+- The Google Reviews section on the Home page calls `GET /api/reviews`, which uses `API_KEY` and `PLACE_ID` server-side.
 
 ### 4. Start the Application
 
@@ -293,7 +302,7 @@ This project is licensed under the MIT License.
 
 For support or questions:
 
-- Email: updownlighting19@gmail.com
+- Email: [updownlighting19@gmail.com](mailto:updownlighting19@gmail.com)
 - Phone: (651)497-4609
 - Website: [Up-Down-Lighting](https://updownlighting.com)
 
