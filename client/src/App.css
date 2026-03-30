@@ -344,6 +344,19 @@ main {
   margin: 0 auto;
 }
 
+.reviews-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.reviews-title-row .section-title {
+  margin-bottom: 0;
+}
+
 .reviews-carousel {
   display: grid;
   grid-template-columns: auto 1fr auto;

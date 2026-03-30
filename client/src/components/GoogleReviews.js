@@ -77,7 +77,17 @@ const GoogleReviews = () => {
 
   return (
     <div className="google-reviews-section">
-      <h2 className="section-title">What Our Clients Say</h2>
+      <div className="reviews-title-row">
+        <h2 className="section-title">What Our Clients Say</h2>
+        <a
+          className="btn btn-primary"
+          href="/api/leave-review"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Leave a Google Review
+        </a>
+      </div>
       {loading ? (
         <p>Loading reviews...</p>
       ) : error ? (
