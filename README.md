@@ -119,6 +119,25 @@ npm run server
 npm run client
 ```
 
+## 🧪 Serve the Production Build Locally
+
+If you run a static server against the wrong folder (or without SPA fallback), you can see `404 Not Found` for routes like `/services` or `/about-us`.
+
+From the repo root:
+
+```bash
+# Build the React app
+npm run build
+
+# Serve the production build with SPA fallback (recommended)
+npm run serve
+```
+
+Notes:
+
+- This project uses React Router, so client-side routes must be rewritten to `index.html`. The `serve` command above uses `serve -s` which enables that fallback.
+- If port `3000` is already in use, `serve` will automatically pick another port and print the URL.
+
 ## 📱 Pages Overview
 
 ### 🏠 Home Page
