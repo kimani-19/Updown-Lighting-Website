@@ -104,6 +104,7 @@ Notes:
 
 - The server will load environment variables from either `server/.env` or the repository root `.env`.
 - The Google Reviews section on the Home page calls `GET /api/reviews`, which uses `API_KEY` and `PLACE_ID` server-side.
+- On Vercel, `server/.env` is NOT used. You must set `API_KEY` and `PLACE_ID` in the Vercel Project → Settings → Environment Variables (Production), then redeploy.
 
 ### 4. Start the Application
 
