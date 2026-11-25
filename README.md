@@ -212,6 +212,8 @@ Notes:
 - `GET /api/contact` - Retrieve all messages
 - `POST /api/contact` - Submit new message
 
+The quote and contact `GET` endpoints require a Supabase session whose `app_metadata.role` is `admin`. They use `SUPABASE_URL` and `SUPABASE_SECRET_KEY` (or `SUPABASE_SERVICE_ROLE_KEY`) from server-side environment configuration; never put the service-role key in the React client.
+
 ### Gallery
 
 - `GET /api/gallery` - Retrieve gallery images

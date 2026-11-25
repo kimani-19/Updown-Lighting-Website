@@ -6,6 +6,10 @@ const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 const { fetchGoogleReviews } = require('./googleReviews');
+const {
+  authorizeAdmin,
+  createAdminSupabaseClient,
+} = require('./adminAuth');
 
 // Load env from either `server/.env` (recommended for local dev)
 // or from the repository root `.env` (common for process managers / hosting).
@@ -48,55 +52,19 @@ app.get('/api/reviews', async (req, res) => {
 });
 
 // Database setup
-const { createClient } = require('@supabase/supabase-js');
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseSecretKey =
-  process.env.SUPABASE_SECRET_KEY ||
-  process.env.SUPABASE_SERVICE_ROLE_KEY;
-const supabase =
-  supabaseUrl && supabaseSecretKey
-    ? createClient(supabaseUrl, supabaseSecretKey, {
-        auth: {
-          persistSession: false,
-          autoRefreshToken: false,
-          detectSessionInUrl: false,
-        },
-      })
-    : null;
+const supabase = createAdminSupabaseClient();
 
 async function requireAdmin(req, res, next) {
-  if (!supabase) {
-    return res.status(500).json({ error: 'Supabase is not configured on the server.' });
+  const authorization = await authorizeAdmin(
+    supabase,
+    req.headers.authorization
+  );
+  if (!authorization.user) {
+    return res.status(authorization.status).json({ error: authorization.error });
   }
 
-  const authorization = req.headers.authorization || '';
-  const token = authorization.startsWith('Bearer ')
-    ? authorization.slice('Bearer '.length)
-    : null;
-
-  if (!token) {
-    return res.status(401).json({ error: 'Authentication required.' });
-  }
-
-  try {
-    const { data, error } = await supabase.auth.getUser(token);
-    if (error || !data?.user) {
-      return res.status(401).json({ error: 'Invalid or expired session.' });
-    }
-
-    const role = data.user.app_metadata?.role;
-
-    if (role !== 'admin') {
-      return res.status(403).json({ error: 'Administrator access required.' });
-    }
-
-    req.adminUser = data.user;
-    return next();
-  } catch (error) {
-    console.error('Admin authentication error:', error);
-    return res.status(401).json({ error: 'Invalid or expired session.' });
-  }
+  req.adminUser = authorization.user;
+  return next();
 }
 
 app.get('/api/admin/session', requireAdmin, (req, res) => {

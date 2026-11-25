@@ -161,6 +161,11 @@ const AdminDashboard = () => {
           axios.get('/api/contact', config),
         ]);
 
+        if (!Array.isArray(quotesResult.data) ||
+            !Array.isArray(contactsResult.data)) {
+          throw new Error('The server returned an invalid dashboard response.');
+        }
+
         if (active) {
           setQuotes(quotesResult.data);
           setContactMessages(contactsResult.data);
@@ -188,6 +193,7 @@ const AdminDashboard = () => {
         if (active) {
           setError(
             requestError.response?.data?.error ||
+            requestError.message ||
             'Unable to load administrator submissions.'
           );
         }
