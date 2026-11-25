@@ -1,5 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import locationPages from '../locationPages.json';
+
+const locationPagesByCity = Object.fromEntries(
+  Object.values(locationPages).map((page) => [page.city, page])
+);
 
 const ServiceAreas = () => {
   const serviceAreas = [
@@ -7,21 +12,21 @@ const ServiceAreas = () => {
       city: 'Bayport',
       state: 'MN',
       description: 'Our home base and primary service area',
-      distance: '0 miles',
-      features: ['Same-day service available', 'Local business support', 'Community events']
+      distance: '0 mi',
+      features: ['Primary service area', 'Residential and commercial projects', 'Custom designs available']
     },
     {
       city: 'Oak Park Heights',
       state: 'MN',
       description: 'Neighboring city with a mix of residential and commercial properties',
-      distance: '3 miles',
-      features: ['Neighborhood displays', 'Community lighting', 'Commercial services']
+      distance: '~2 mi',
+      features: ['Residential properties', 'Commercial properties', 'Custom designs available']
     },
     {
       city: 'Stillwater',
       state: 'MN',
       description: 'Historic downtown and residential areas',
-      distance: '8 miles',
+      distance: '~3 mi',
       features: ['Historic district lighting', 'Residential neighborhoods', 'Commercial properties']
     },
    
@@ -30,42 +35,42 @@ const ServiceAreas = () => {
       city: 'Lake Elmo',
       state: 'MN',
       description: 'Suburban communities and luxury homes',
-      distance: '12 miles',
-      features: ['Luxury home installations', 'Gated communities', 'Custom designs']
+      distance: '~5 mi',
+      features: ['Residential installations', 'Custom designs', 'Consultation and planning']
     },
     {
       city: 'Woodbury',
       state: 'MN',
       description: 'Growing community with modern homes',
-      distance: '15 miles',
-      features: ['New construction lighting', 'Modern designs', 'Energy-efficient solutions']
+      distance: '~10 mi',
+      features: ['New construction lighting', 'Modern designs', 'LED and traditional light options']
     },
     {
       city: 'Oakdale',
       state: 'MN',
       description: 'Family-friendly neighborhoods',
-      distance: '18 miles',
-      features: ['Family home lighting', 'School partnerships', 'Community programs']
+      distance: '~9 mi',
+      features: ['Residential lighting', 'Custom design consultation', 'Seasonal maintenance and removal']
     },
     {
       city: 'Cottage Grove',
       state: 'MN',
       description: 'Suburban and rural properties',
-      distance: '20 miles',
+      distance: '~16 mi',
       features: ['Rural property lighting', 'Large installations', 'Custom solutions']
     },
     {
       city: 'Hastings',
       state: 'MN',
       description: 'Historic city with diverse properties',
-      distance: '22 miles',
+      distance: '~20 mi',
       features: ['Historic home lighting', 'Downtown commercial', 'Mixed-use properties']
     },
     {
       city: 'Saint Paul',
       state: 'MN',
       description: 'Minnesota’s capital city with vibrant neighborhoods and businesses',
-      distance: '22 miles',
+      distance: '~16 mi',
       features: ['Urban neighborhood installs', 'Business district displays', 'Event lighting']
     },
     
@@ -73,14 +78,14 @@ const ServiceAreas = () => {
       city: 'Afton',
       state: 'MN',
       description: 'Scenic properties and estates',
-      distance: '25 miles',
+      distance: '~8 mi',
       features: ['Estate lighting', 'Scenic property highlights', 'Luxury installations']
     },
     {
       city: 'Minneapolis',
       state: 'MN',
       description: 'The largest city in Minnesota with diverse holiday lighting needs',
-      distance: '27 miles',
+      distance: '~24 mi',
       features: ['Downtown building lighting', 'Lakes area installations', 'Large-scale displays']
     },
   ];
@@ -88,23 +93,23 @@ const ServiceAreas = () => {
   const coverageInfo = [
     {
       icon: '🚗',
-      title: '25-Mile Radius',
-      description: 'We serve all areas within a 25-mile radius of Bayport, MN'
+      title: 'Listed East Metro Communities',
+      description: 'Bayport and nearby communities listed below; share your address to confirm service.'
     },
     {
       icon: '⏰',
-      title: 'Flexible Scheduling',
-      description: 'Available 7 days a week to accommodate your schedule'
-    },
-    {
-      icon: '🛡️',
-      title: 'Fully Insured',
-      description: 'Licensed and insured to work in all service areas'
+      title: 'Residential & Commercial',
+      description: 'The service offering includes lighting for homes and commercial properties.'
     },
     {
       icon: '💡',
-      title: 'Local Knowledge',
-      description: 'Familiar with local regulations and neighborhood aesthetics'
+      title: 'Seasonal Service',
+      description: 'Design, installation, in-season maintenance, and seasonal removal are listed services.'
+    },
+    {
+      icon: '🗓️',
+      title: 'Consultation & Planning',
+      description: 'Discuss property features and design preferences before approving a project quote.'
     }
   ];
 
@@ -153,7 +158,11 @@ const ServiceAreas = () => {
         <div className="container">
           <h2 className="section-title">Cities We Serve</h2>
           <p className="section-subtitle">
-            Click on any city to learn more about our services in that area.
+            Request a quote for any listed city, or explore a local service page for the featured communities.
+          </p>
+          <p className="area-distance-note">
+            Distances are approximate straight-line measurements from Bayport city center to each
+            city center, not driving distances. Location data: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>.
           </p>
           
           <div className="grid grid-2">
@@ -178,6 +187,14 @@ const ServiceAreas = () => {
                   <Link to="/contact#quote-form" className="btn btn-primary">
                     Get Quote for {area.city}
                   </Link>
+                  {locationPagesByCity[area.city] && (
+                    <Link
+                      to={locationPagesByCity[area.city].path}
+                      className="area-explore-link"
+                    >
+                      Explore {area.city} Services
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
@@ -190,7 +207,7 @@ const ServiceAreas = () => {
         <div className="container">
           <h2 className="section-title">Service Area Map</h2>
           <p className="section-subtitle">
-            Our 25-mile service radius covers the Twin Cities East Metro area.
+            We serve the communities listed on this page. Contact us with your address to confirm coverage.
           </p>
           
           <div className="map-container">
@@ -209,7 +226,7 @@ const ServiceAreas = () => {
                   </div>
                   <div className="map-feature">
                     <span className="map-dot tertiary"></span>
-                    <span>Extended Coverage (25 miles)</span>
+                    <span>Listed East Metro Communities</span>
                   </div>
                 </div>
               </div>

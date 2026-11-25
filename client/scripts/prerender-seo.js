@@ -1,11 +1,22 @@
 const fs = require('fs');
 const path = require('path');
+const locationPages = require('../src/locationPages.json');
 const seoPages = require('../src/seoPages.json');
 
 const buildDirectory = path.resolve(__dirname, '../build');
 const template = fs.readFileSync(path.join(buildDirectory, 'index.html'), 'utf8');
 const siteUrl = 'https://updownlighting.com';
 const socialImage = `${siteUrl}/images/hero/team-installation-wide-banner.jpg`;
+const locationPagesByPath = Object.fromEntries(
+  Object.values(locationPages).map((page) => [page.path, page])
+);
+const pageMetadata = Object.fromEntries(
+  Object.values(locationPages).map((page) => [
+    page.path,
+    { title: page.title, description: page.description },
+  ])
+);
+const allPages = { ...seoPages, ...pageMetadata };
 
 const escapeAttribute = (value) => value
   .replace(/&/g, '&amp;')
@@ -39,7 +50,7 @@ function replaceCanonical(html, canonicalUrl) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-function renderPage(templateHtml, { title, description, canonicalUrl }) {
+function renderPage(templateHtml, { title, description, canonicalUrl }, locationPage) {
   let html = templateHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
 
   html = replaceMeta(html, 'name', 'description', description);
@@ -51,7 +62,28 @@ function renderPage(templateHtml, { title, description, canonicalUrl }) {
   html = replaceMeta(html, 'name', 'twitter:description', description);
   html = replaceMeta(html, 'name', 'twitter:image', socialImage);
 
-  return replaceCanonical(html, canonicalUrl);
+  html = replaceCanonical(html, canonicalUrl);
+
+  if (locationPage) {
+    const serviceSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${canonicalUrl}#service`,
+      name: `Christmas light installation in ${locationPage.city}, Minnesota`,
+      serviceType: 'Christmas light installation',
+      description,
+      provider: { '@id': `${siteUrl}/#business` },
+      areaServed: {
+        '@type': 'City',
+        name: `${locationPage.city}, Minnesota`,
+      },
+      url: canonicalUrl,
+    };
+    const schemaScript = `<script type="application/ld+json" data-location-service-schema="true">${JSON.stringify(serviceSchema)}</script>`;
+    html = html.replace('</head>', `  ${schemaScript}\n</head>`);
+  }
+
+  return html;
 }
 
 function writeRoutePage(route, html) {
@@ -60,11 +92,14 @@ function writeRoutePage(route, html) {
   fs.writeFileSync(path.join(outputDirectory, 'index.html'), html);
 }
 
-for (const [route, metadata] of Object.entries(seoPages)) {
+for (const [route, metadata] of Object.entries(allPages)) {
   if (route === '/') continue;
 
   const canonicalUrl = `${siteUrl}${route}`;
-  writeRoutePage(route, renderPage(template, { ...metadata, canonicalUrl }));
+  writeRoutePage(
+    route,
+    renderPage(template, { ...metadata, canonicalUrl }, locationPagesByPath[route])
+  );
 }
 
 const privateHtml = renderPage(template, {
@@ -80,4 +115,4 @@ const privateHtml = renderPage(template, {
 writeRoutePage('/admin', privateHtml);
 writeRoutePage('/admin/dashboard', privateHtml);
 
-console.log(`Generated SEO metadata for ${Object.keys(seoPages).length} public routes and administrator pages.`);
+console.log(`Generated SEO metadata for ${Object.keys(allPages).length} public routes and administrator pages.`);

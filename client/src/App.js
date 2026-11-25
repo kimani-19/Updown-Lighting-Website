@@ -10,11 +10,16 @@ import Gallery from './pages/Gallery';
 import Footer from './components/Footer';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import LocationLandingPage from './pages/LocationLandingPage';
+import locationPages from './locationPages.json';
 import seoPages from './seoPages.json';
 import './App.css';
 
 const siteUrl = 'https://updownlighting.com';
 const socialImage = `${siteUrl}/images/hero/team-installation-wide-banner.jpg`;
+const locationPagesByPath = Object.fromEntries(
+  Object.values(locationPages).map((page) => [page.path, page])
+);
 
 function setMetaTag(attribute, key, content) {
   let meta = document.head.querySelector(`meta[${attribute}="${key}"]`);
@@ -28,9 +33,41 @@ function setMetaTag(attribute, key, content) {
   meta.setAttribute('content', content);
 }
 
+function updateLocationStructuredData(locationPage) {
+  let script = document.head.querySelector('script[data-location-service-schema="true"]');
+
+  if (!locationPage) {
+    script?.remove();
+    return;
+  }
+
+  if (!script) {
+    script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.dataset.locationServiceSchema = 'true';
+    document.head.appendChild(script);
+  }
+
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteUrl}${locationPage.path}#service`,
+    name: `Christmas light installation in ${locationPage.city}, Minnesota`,
+    serviceType: 'Christmas light installation',
+    description: locationPage.description,
+    provider: { '@id': `${siteUrl}/#business` },
+    areaServed: {
+      '@type': 'City',
+      name: `${locationPage.city}, Minnesota`,
+    },
+    url: `${siteUrl}${locationPage.path}`,
+  });
+}
+
 function updatePageMetadata(pathname) {
   const route = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
-  const metadata = seoPages[route];
+  const locationPage = locationPagesByPath[route];
+  const metadata = seoPages[route] || locationPage;
   const isPrivateRoute = pathname.startsWith('/admin') || !metadata;
   const title = metadata?.title || 'Administrator | UpDown Lighting';
   const description = metadata?.description || 'Private administrator access for UpDown Lighting.';
@@ -45,10 +82,13 @@ function updatePageMetadata(pathname) {
 
   let canonical = document.head.querySelector('link[rel="canonical"]');
   if (isPrivateRoute) {
+    updateLocationStructuredData(null);
     canonical?.remove();
     setMetaTag('name', 'robots', 'noindex, nofollow');
     return;
   }
+
+  updateLocationStructuredData(locationPage);
 
   if (!canonical) {
     canonical = document.createElement('link');
@@ -102,6 +142,7 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/service-areas/:slug" element={<LocationLandingPage />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/dashboard/:section" element={<AdminDashboard />} />

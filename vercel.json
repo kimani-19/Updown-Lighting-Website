@@ -46,6 +46,30 @@
       "destination": "/contact/index.html"
     },
     {
+      "source": "/service-areas/bayport-mn",
+      "destination": "/service-areas/bayport-mn/index.html"
+    },
+    {
+      "source": "/service-areas/oak-park-heights-mn",
+      "destination": "/service-areas/oak-park-heights-mn/index.html"
+    },
+    {
+      "source": "/service-areas/stillwater-mn",
+      "destination": "/service-areas/stillwater-mn/index.html"
+    },
+    {
+      "source": "/service-areas/lake-elmo-mn",
+      "destination": "/service-areas/lake-elmo-mn/index.html"
+    },
+    {
+      "source": "/service-areas/woodbury-mn",
+      "destination": "/service-areas/woodbury-mn/index.html"
+    },
+    {
+      "source": "/service-areas/oakdale-mn",
+      "destination": "/service-areas/oakdale-mn/index.html"
+    },
+    {
       "source": "/admin",
       "destination": "/admin/index.html"
     },

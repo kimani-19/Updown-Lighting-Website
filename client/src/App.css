@@ -1480,6 +1480,123 @@ html {
   margin-top: auto;
 }
 
+.area-explore-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--primary-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.area-explore-link:hover {
+  color: var(--dark-blue);
+}
+
+.area-explore-link:focus-visible {
+  outline: 3px solid var(--warm-gold);
+  outline-offset: 3px;
+}
+
+.area-distance-note {
+  margin: -12px 0 24px;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+}
+
+.area-distance-note a {
+  color: var(--primary-blue);
+  text-underline-offset: 2px;
+}
+
+.location-eyebrow {
+  margin: 0 0 10px;
+  color: var(--warm-gold);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.location-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 56px);
+}
+
+.location-project-photo {
+  width: 100%;
+}
+
+.location-project-photo .story-photo {
+  aspect-ratio: 1.4;
+}
+
+.location-photo-caption {
+  padding: 14px 18px 8px;
+  color: var(--dark-gray);
+  font-size: 0.95rem;
+}
+
+.location-approach .section-title {
+  text-align: left;
+}
+
+.location-approach p:not(.location-eyebrow) {
+  line-height: 1.7;
+}
+
+.location-services-section .location-service-card {
+  height: 100%;
+}
+
+.location-service-card h3,
+.location-faq-item h3 {
+  color: var(--dark-blue);
+}
+
+.location-faq-list {
+  display: grid;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.location-faq-item {
+  padding: 22px 24px;
+  border-left: 4px solid var(--warm-gold);
+  border-radius: 8px;
+  background: var(--light-gray);
+}
+
+.location-faq-item h3 {
+  margin-top: 0;
+}
+
+.location-faq-item p {
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+.location-cta-section {
+  background: var(--light-gray);
+}
+
+.location-cta-card {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.location-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
 .map-container {
   background: white;
   border-radius: 12px;
@@ -2057,6 +2174,10 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .location-intro-grid {
+    grid-template-columns: 1fr;
+  }
+
   .nav-links {
     display: none;
   }
