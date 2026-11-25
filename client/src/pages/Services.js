@@ -1,10 +1,67 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const serviceIconPaths = {
+  homePlug: (
+    <>
+      <path d="m3 10 9-7 9 7" />
+      <path d="M5 9v12h14V9" />
+      <path d="M9 14h6" />
+      <path d="M10 11v3" />
+      <path d="M14 11v3" />
+      <path d="M9 14v1a3 3 0 0 0 6 0v-1" />
+      <path d="M12 18v3" />
+    </>
+  ),
+  penTool: (
+    <>
+      <path d="m4 20 7-2 9-9-5-5-9 9-2 7Z" />
+      <path d="m13 7 5 5" />
+      <path d="m4 20 7-2" />
+      <circle cx="4" cy="20" r="1.5" />
+      <circle cx="11" cy="18" r="1.5" />
+      <circle cx="20" cy="9" r="1.5" />
+    </>
+  ),
+  wrench: (
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94L14.7 6.3z" />
+  ),
+  calendarCheck: (
+    <>
+      <rect x="3" y="4" width="18" height="17" rx="2" />
+      <path d="M16 2v4M8 2v4M3 10h18" />
+      <path d="m8 15 2.5 2.5 5-5" />
+    </>
+  ),
+  lightbulb: (
+    <>
+      <path d="M15 14c.2-1 .7-1.7 1.5-2.5a6 6 0 1 0-8.8 0C8.7 12.3 9.1 13 9 14" />
+      <path d="M9 14h6M9 18h6M10 22h4" />
+      <path d="M12 2v2M4.93 4.93l1.42 1.42M19.07 4.93l-1.42 1.42" />
+    </>
+  )
+};
+
+const ServiceIcon = ({ name }) => (
+  <svg
+    className="service-svg-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    {serviceIconPaths[name]}
+  </svg>
+);
+
 const Services = () => {
   const services = [
     {
-      icon: '🏠',
+      icon: 'homePlug',
       title: 'Residential Installation',
       description: 'Transform your home with beautiful Christmas lights. We handle everything from design to installation.',
       features: [
@@ -16,7 +73,7 @@ const Services = () => {
       ],
     },
     {
-      icon: '',
+      icon: 'penTool',
       title: 'Custom Design',
       description: 'Unique and creative Christmas light designs tailored to your vision and property.',
       features: [
@@ -28,7 +85,7 @@ const Services = () => {
       ],
     },
     {
-      icon: '🔧',
+      icon: 'wrench',
       title: 'Maintenance & Repair',
       description: 'Keep your Christmas lights looking perfect throughout the season with our maintenance services.',
       features: [
@@ -40,7 +97,7 @@ const Services = () => {
       ],
     },
     {
-      icon: '📅',
+      icon: 'calendarCheck',
       title: 'Installation & Removal',
       description: 'Full-service installation at the start of the season and professional removal afterward.',
       features: [
@@ -52,7 +109,7 @@ const Services = () => {
       ],
     },
     {
-      icon: '💡',
+      icon: 'lightbulb',
       title: 'Consultation & Planning',
       description: 'Expert advice on Christmas lighting design, energy efficiency, and seasonal planning.',
       features: [
@@ -69,9 +126,9 @@ const Services = () => {
     <div className="services">
       {/* Hero Section */}
       <section 
-        className="hero"
+        className="hero hero-business-photo"
         style={{
-          backgroundImage: `url('/images/hero/image1.jpeg')`
+          backgroundImage: `url('/images/hero/team-installation-wide-banner.jpg')`
         }}
       >
         <div className="hero-content">
@@ -93,7 +150,9 @@ const Services = () => {
           <div className="grid grid-2">
             {services.map((service, index) => (
               <div key={index} className="card service-card">
-                <div className="service-icon">{service.icon}</div>
+                <div className="service-icon">
+                  <ServiceIcon name={service.icon} />
+                </div>
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>
                 
@@ -106,7 +165,7 @@ const Services = () => {
                   </ul>
                 </div>
                 
-                <Link to="/contact" className="btn btn-primary">
+                <Link to="/contact#quote-form" className="btn btn-primary">
                   Get Quote for This Service
                 </Link>
               </div>
@@ -205,7 +264,7 @@ const Services = () => {
               Get your free quote today and let us transform your property into a winter wonderland.
             </p>
             <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-secondary">Get Free Quote</Link>
+              <Link to="/contact#quote-form" className="btn btn-secondary">Get Free Quote</Link>
               <a href="tel:6514974609" className="btn btn-secondary">Call (651)497-4609</a>
             </div>
           </div>

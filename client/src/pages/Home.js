@@ -1,17 +1,83 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Chatbot from '../components/Chatbot';
-import GoogleReviews from '../components/GoogleReviews';
+import GoogleReviews, { GoogleMark } from '../components/GoogleReviews';
+import QuoteForm from '../components/QuoteForm';
+
+const HeroRatingStars = ({ rating }) => {
+  const hasRating = typeof rating === 'number' && Number.isFinite(rating);
+  const fill = hasRating ? `${(Math.max(0, Math.min(5, rating)) / 5) * 100}%` : '0%';
+
+  return (
+    <span
+      className="hero-google-stars"
+      style={{ '--hero-star-fill': fill }}
+      role="img"
+      aria-label={hasRating ? `${rating.toFixed(1)} out of 5 stars` : 'Rating unavailable'}
+    >
+      ★★★★★
+    </span>
+  );
+};
 
 const Home = () => {
+  const [googleReviewData, setGoogleReviewData] = useState(null);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
+  const [reviewsError, setReviewsError] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get('/api/reviews');
+        const data = Array.isArray(response.data)
+          ? { reviews: response.data }
+          : response.data;
+
+        if (!Array.isArray(data?.reviews)) {
+          throw new Error('Received an invalid response for Google reviews.');
+        }
+
+        if (active) setGoogleReviewData(data);
+      } catch (error) {
+        console.error('Error fetching Google reviews:', error);
+        if (active) setReviewsError(true);
+      } finally {
+        if (active) setReviewsLoading(false);
+      }
+    };
+
+    fetchReviews();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const rating = typeof googleReviewData?.rating === 'number'
+    ? googleReviewData.rating
+    : null;
+  const reviewCount = typeof googleReviewData?.userRatingCount === 'number'
+    ? googleReviewData.userRatingCount
+    : null;
+  const formattedReviewCount = reviewCount === null
+    ? reviewsLoading ? 'Loading reviews' : 'Review count unavailable'
+    : `${new Intl.NumberFormat('en-US').format(reviewCount)} ${reviewCount === 1 ? 'review' : 'reviews'}`;
+  const ratingDescription = rating === null
+    ? 'Rating unavailable.'
+    : `Rated ${rating.toFixed(1)} out of 5.`;
+  const reviewCountDescription = reviewCount === null
+    ? 'Review count unavailable.'
+    : `${formattedReviewCount}.`;
 
   return (
     <div className="home">
       {/* Hero Section */}
       <section 
-        className="hero"
+        className="hero hero-business-photo"
         style={{
-          backgroundImage: `url('/images/hero/image1.jpeg')`
+          backgroundImage: `url('/images/hero/team-installation-wide-banner.jpg')`
         }}
       >
         <div className="hero-content">
@@ -20,31 +86,53 @@ const Home = () => {
             Transform your home into a winter wonderland with our expert Christmas lights installation service in Bayport, Minnesota and surrounding areas.
           </p>
           <div className="hero-buttons">
-            <a href="#quote-form" className="btn btn-primary">Get Free Quote</a>
-            <Link to="/gallery" className="btn btn-secondary">View Our Work</Link>
+            <a href="#quote-form" className="btn hero-quote-btn">Get a Free Quote</a>
+            <Link to="/gallery" className="btn hero-work-btn">View Our Work</Link>
+          </div>
+          <div className="hero-google-rating-row">
+            <a
+              className="hero-google-rating"
+              href="#google-reviews"
+              aria-label={`Read our Google customer reviews. ${ratingDescription} ${reviewCountDescription}`}
+            >
+              <span className="hero-google-brand">
+                <GoogleMark className="hero-google-logo" />
+                <span>Google</span>
+              </span>
+              <strong className="hero-google-rating-number">
+                {rating === null ? '—' : rating.toFixed(1)}
+              </strong>
+              <HeroRatingStars rating={rating} />
+              <span className="hero-google-review-count">{formattedReviewCount}</span>
+              <svg
+                className="hero-google-arrow"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M4 10h11M10 5l5 5-5 5" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Quote Form Section */}
-      <section id="quote-form" className="section">
-        <div className="container">
-          <h2 className="section-title">Get Your Free Quote</h2>
-          <p className="section-subtitle">
-            Ready to light up your holidays? Fill out our form and we'll provide you with a free, no-obligation quote for your Christmas lights installation.
-          </p>
+      <section
+        id="quote-form"
+        className="section quote-section"
+        style={{ '--quote-background-image': "url('/images/hero/image1.jpeg')" }}
+      >
+        <div className="container quote-section-content">
+          <div className="quote-section-heading">
+            <p className="quote-kicker">Up-Down-Lighting</p>
+            <h2 className="section-title">Request a Free Quote</h2>
+            <p className="section-subtitle">
+              Get a personalized quote for professional Christmas light installation at your home or business. It's quick, easy, and there's no obligation.
+            </p>
+          </div>
           
-          <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLSf-K37kA91u7AZmqZ2YTlZJ5Rl24o3oqduIto2OMba2JXJrYw/viewform?embedded=true" 
-            width="100%" 
-            height="1197" 
-            frameBorder="0" 
-            marginHeight="0" 
-            marginWidth="0"
-            title="Get a Free Quote"
-          >
-            Loading…
-          </iframe>
+          <QuoteForm />
         </div>
       </section>
 
@@ -115,11 +203,11 @@ const Home = () => {
       </section>
 
       {/* Google Reviews Section */}
-      <section className="section">
-        <div className="container">
-          <GoogleReviews />
-        </div>
-      </section>
+      <GoogleReviews
+        reviewData={googleReviewData}
+        loading={reviewsLoading}
+        error={reviewsError}
+      />
 
       {/* Chatbot */}
       <Chatbot />

@@ -23,6 +23,7 @@ code {
 :root {
   --primary-blue: #1E40AF;
   --dark-blue: #1E3A8A;
+  --primary-green: #1E40AF;
   --accent-red: #DC2626;
   --dark-red: #B91C1C;
   --black: #000000;
@@ -31,6 +32,12 @@ code {
   --light-gray: #F8F9FA;
   --border-color: #E5E7EB;
   --text-gray: #6B7280;
+  --pale-blue: #EEF4FF;
+  --soft-blue: #DCE7FA;
+  --pale-red: #FFF1F2;
+  --warm-gold: #C69232;
+  --light-gold: #E1B65B;
+  --pale-gold: #FFF7E3;
 }
 
 /* Global Styles */

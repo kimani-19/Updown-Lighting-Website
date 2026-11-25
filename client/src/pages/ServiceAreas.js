@@ -112,9 +112,9 @@ const ServiceAreas = () => {
     <div className="service-areas">
       {/* Hero Section */}
       <section 
-        className="hero"
+        className="hero hero-business-photo"
         style={{
-          backgroundImage: `url('/images/hero/image1.jpeg')`
+          backgroundImage: `url('/images/hero/team-installation-wide-banner.jpg')`
         }}
       >
         <div className="hero-content">
@@ -175,7 +175,7 @@ const ServiceAreas = () => {
                 </div>
                 
                 <div className="area-actions">
-                  <Link to="/contact" className="btn btn-primary">
+                  <Link to="/contact#quote-form" className="btn btn-primary">
                     Get Quote for {area.city}
                   </Link>
                 </div>
@@ -268,7 +268,7 @@ const ServiceAreas = () => {
               a trusted partner in your area.
             </p>
             <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-primary">Contact Us</Link>
+              <Link to="/contact#quote-form" className="btn btn-primary">Contact Us</Link>
               <a href="tel:6514974609" className="btn btn-secondary">Call (651)497-4609</a>
             </div>
           </div>

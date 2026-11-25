@@ -22,11 +22,12 @@ const Chatbot = () => {
   }, [messages]);
 
   const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return;
+    const message = inputMessage.trim();
+    if (!message || isLoading) return;
 
     const userMessage = {
       type: 'user',
-      content: inputMessage
+      content: message
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -35,7 +36,7 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post('/api/chatbot', {
-        message: inputMessage
+        message
       });
 
       const botMessage = {
@@ -55,8 +56,9 @@ const Chatbot = () => {
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
       handleSendMessage();
     }
   };

@@ -1,57 +1,63 @@
 import React, { useState, useEffect } from 'react';
-
-const allImages = [
-  {
-    id: 1,
-    title: 'Classic Warm White',
-    description: "Elegant C9 LED bulbs outlining the roofline for a timeless holiday look.",
-    image_url: '/images/gallery/gallery1.jpeg',
-    category: 'residential'
-  },
-  {
-    id: 2,
-    title: "The Installation Process",
-    description:  "A behind-the-scenes look at our professional installation process during the day.",
-    image_url: '/images/gallery/gallery2.jpeg',
-    category: 'residential'
-  },
-  {
-    id: 3,
-    title: 'Another beautiful home',
-    description: 'Professional lighting installation for a Stillwater business',
-    image_url: '/images/gallery/gallery3.jpeg',
-    category: 'residential'
-  },
-  {
-    id: 4,
-    title:  "Vibrant & Colorful Display",
-    description: "Dynamic, multi-colored LED lights bring a fun and festive spirit to this home.",
-    image_url: '/images/gallery/gallery4.jpeg',
-    category: 'landscaping'
-  },
-  {
-    id: 5,
-    title:  "Clean & Professional Install",
-    description: 'Elegant lighting design for a historic Stillwater home',
-    image_url: '/images/gallery/gallery5.jpeg',
-    category: 'residential'
-  }
-];
+import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [beforeImage, setBeforeImage] = useState('/images/gallery/gallery2.jpeg');
+  const [afterImage, setAfterImage] = useState('/images/gallery/gallery1.jpeg');
 
   useEffect(() => {
-    setImages(allImages);
-    setLoading(false);
+    let active = true;
+
+    const loadImages = async () => {
+      if (!supabase) {
+        setLoadError('The gallery is not configured yet. Please check back soon.');
+        setLoading(false);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('gallery_images')
+        .select('id, title, description, image_url, category, media_type, poster_url, created_at')
+        .order('created_at', { ascending: false });
+
+      if (!active) return;
+
+      if (error) {
+        console.error('Unable to load gallery images:', error);
+        setLoadError('We could not load the gallery right now. Please try again later.');
+      } else {
+        setImages(data || []);
+        const before = data?.find((image) =>
+          image.media_type !== 'video' && image.title?.toLowerCase().includes('before')
+        );
+        const after = data?.find((image) =>
+          image.media_type !== 'video' && image.title?.toLowerCase().includes('after')
+        );
+        if (before) setBeforeImage(before.image_url);
+        if (after) setAfterImage(after.image_url);
+      }
+      setLoading(false);
+    };
+
+    loadImages();
+    return () => {
+      active = false;
+    };
   }, []);
 
   const categories = [
     { value: 'all', label: 'All Projects' },
-    { value: 'residential', label: 'Residential' },
-    { value: 'landscaping', label: 'Landscaping' }
+    ...Array.from(new Set(images.map((image) => image.category).filter(Boolean)))
+      .sort()
+      .map((category) => ({
+        value: category,
+        label: category.charAt(0).toUpperCase() + category.slice(1),
+      })),
   ];
 
   const filteredImages = selectedCategory === 'all' 
@@ -62,9 +68,9 @@ const Gallery = () => {
     <div className="gallery">
       {/* Hero Section */}
       <section 
-        className="hero"
+        className="hero hero-business-photo"
         style={{
-          backgroundImage: `url('/images/hero/image1.jpeg')`
+          backgroundImage: `url('/images/hero/team-installation-wide-banner.jpg')`
         }}
       >
         <div className="hero-content">
@@ -100,23 +106,44 @@ const Gallery = () => {
             <div className="loading-message">
               <h3>Loading gallery images...</h3>
             </div>
+          ) : loadError ? (
+            <div className="gallery-state gallery-state-error" role="alert">
+              <h3>Gallery unavailable</h3>
+              <p>{loadError}</p>
+            </div>
+          ) : filteredImages.length === 0 ? (
+            <div className="gallery-state">
+              <h3>{images.length ? 'No projects in this category yet' : 'New projects coming soon'}</h3>
+              <p>Check back soon to see more of our holiday lighting work.</p>
+            </div>
           ) : (
             <div className="gallery-grid">
               {filteredImages.map((image) => (
-                <div key={image.id} className="gallery-item">
+                <article key={image.id} className="gallery-item">
                   <div className="gallery-image">
-                    <img 
-                      src={image.image_url} 
-                      alt={image.title}
-                      style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }}
-                    />
+                    {image.media_type === 'video' ? (
+                      <video
+                        src={image.image_url}
+                        poster={image.poster_url || undefined}
+                        controls
+                        preload="metadata"
+                        playsInline
+                        aria-label={image.title || 'Holiday lighting video'}
+                      />
+                    ) : (
+                      <img
+                        src={image.image_url}
+                        alt={image.title || 'Holiday lighting installation'}
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                   <div className="gallery-info">
                     <h3 className="gallery-title">{image.title}</h3>
-                    <p className="gallery-description">{image.description}</p>
-                    <span className="gallery-category">{image.category}</span>
+                    {image.description && <p className="gallery-description">{image.description}</p>}
+                    {image.category && <span className="gallery-category">{image.category}</span>}
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           )}
@@ -134,7 +161,7 @@ const Gallery = () => {
             </p>
             
             <div className="cta-buttons">
-              <a href="/contact" className="btn btn-primary">Get Free Quote</a>
+              <Link to="/contact#quote-form" className="btn btn-primary">Get Free Quote</Link>
               <a href="tel:6514974609" className="btn btn-secondary">Call (651)497-4609</a>
             </div>
           </div>
@@ -194,11 +221,11 @@ const Gallery = () => {
           <div className="before-after-grid">
             <div className="before-after-item">
               <div className="before-after-image">
-                <img src="/images/gallery/gallery2.jpeg" alt="Before installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                <img src={beforeImage} alt="Home before Christmas light installation" loading="lazy" />
                 <h4>Before</h4>
               </div>
               <div className="before-after-image">
-                <img src="/images/gallery/gallery1.jpeg" alt="After installation" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                <img src={afterImage} alt="Home after Christmas light installation" loading="lazy" />
                 <h4>After</h4>
               </div>
             </div>

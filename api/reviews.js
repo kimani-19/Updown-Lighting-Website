@@ -1,4 +1,4 @@
-const axios = require('axios');
+const { fetchGoogleReviews } = require('../server/googleReviews');
 
 module.exports = async (req, res) => {
   if (req.method !== 'GET') {
@@ -16,22 +16,10 @@ module.exports = async (req, res) => {
     });
   }
 
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${encodeURIComponent(
-    placeId
-  )}&fields=name,rating,reviews&key=${encodeURIComponent(apiKey)}`;
-
   try {
-    const response = await axios.get(url, { timeout: 10_000 });
-
-    if (response.data?.result?.reviews && Array.isArray(response.data.result.reviews)) {
-      res.setHeader('Cache-Control', 's-maxage=21600, stale-while-revalidate=86400');
-      return res.status(200).json(response.data.result.reviews);
-    }
-
-    return res.status(500).json({
-      error: 'Failed to process reviews from Google.',
-      details: response.data,
-    });
+    const reviewData = await fetchGoogleReviews({ apiKey, placeId });
+    res.setHeader('Cache-Control', 's-maxage=21600, stale-while-revalidate=86400');
+    return res.status(200).json(reviewData);
   } catch (error) {
     const details = error.response ? error.response.data : error.message;
     return res.status(500).json({

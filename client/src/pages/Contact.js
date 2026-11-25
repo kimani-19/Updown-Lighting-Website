@@ -1,4 +1,5 @@
 import React from 'react';
+import QuoteForm from '../components/QuoteForm';
 
 const Contact = () => {
 
@@ -56,13 +57,20 @@ const Contact = () => {
     }
   ];
 
+  const marqueeItems = [
+    'FREE ESTIMATES',
+    'CUSTOM LIGHTING DESIGNS',
+    'PROFESSIONAL INSTALLATION',
+    'HASSLE-FREE HOLIDAYS'
+  ];
+
   return (
     <div className="contact">
       {/* Hero Section */}
       <section 
-        className="hero"
+        className="hero hero-business-photo"
         style={{
-          backgroundImage: `url('/images/hero/image1.jpeg')`
+          backgroundImage: `url('/images/hero/team-installation-wide-banner.jpg')`
         }}
       >
         <div className="hero-content">
@@ -72,6 +80,24 @@ const Contact = () => {
           </p>
         </div>
       </section>
+
+      <div className="contact-marquee">
+        <p className="contact-marquee-sr-only">
+          Free estimates. Custom lighting designs. Professional installation. Hassle-free holidays.
+        </p>
+        <div className="contact-marquee-track" aria-hidden="true">
+          {[0, 1].map((copy) => (
+            <div className="contact-marquee-group" key={copy}>
+              {marqueeItems.map((item, index) => (
+                <React.Fragment key={item}>
+                  {index > 0 && <span className="contact-marquee-separator">✦</span>}
+                  <span className="contact-marquee-item">{item}</span>
+                </React.Fragment>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Contact Info */}
       <section className="section">
@@ -103,7 +129,11 @@ const Contact = () => {
       </section>
 
       {/* Contact Form */}
-      <section className="section" style={{ backgroundColor: 'var(--light-gray)' }}>
+      <section
+        id="quote-form"
+        className="section quote-section"
+        style={{ '--quote-background-image': "url('/images/hero/image1.jpeg')" }}
+      >
         <div className="container">
           <div className="grid grid-2" style={{ alignItems: 'start', gap: '60px' }}>
             <div>
@@ -111,17 +141,7 @@ const Contact = () => {
               <p className="section-subtitle">
                 Fill out the form below and we'll get back to you within 24 hours with a free, no-obligation quote.
               </p>
-              <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSf-K37kA91u7AZmqZ2YTlZJ5Rl24o3oqduIto2OMba2JXJrYw/viewform?embedded=true" 
-                width="100%" 
-                height="1197" 
-                frameBorder="0" 
-                marginHeight="0" 
-                marginWidth="0"
-                title="Get a Free Quote"
-              >
-                Loading…
-              </iframe>
+              <QuoteForm />
             </div>
             
             <div>
@@ -142,7 +162,7 @@ const Contact = () => {
                 <div className="quick-contact-item">
                   <h4>📋 Get Free Quote</h4>
                   <p>Quick quote request form</p>
-                  <a href="/" className="btn btn-primary">Quote Form</a>
+                  <a href="#quote-form" className="btn btn-primary">Quote Form</a>
                 </div>
               </div>
               

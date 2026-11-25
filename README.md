@@ -89,13 +89,13 @@ cd ..
 Create a `.env` file (recommended: in the `server/` directory):
 
 ```env
-EMAIL_USER=your-email@gmail.com
+EMAIL_USER=updownlighting19@gmail.com
 EMAIL_PASS=your-app-password
 PORT=5000
 NODE_ENV=development
 DB_PATH=./database.sqlite
 
-# Google Reviews (Google Places API)
+# Google Reviews (Google Places API (New))
 API_KEY=your-google-places-api-key
 PLACE_ID=your-google-place-id
 ```
@@ -103,7 +103,9 @@ PLACE_ID=your-google-place-id
 Notes:
 
 - The server will load environment variables from either `server/.env` or the repository root `.env`.
-- The Google Reviews section on the Home page calls `GET /api/reviews`, which uses `API_KEY` and `PLACE_ID` server-side.
+- The Google Reviews section on the Home page calls `GET /api/reviews`, which uses `API_KEY` and `PLACE_ID` server-side. Enable Places API (New) for the key in Google Cloud.
+- The endpoint returns the Place's overall `rating` and `userRatingCount` alongside the normalized `reviews` array; the carousel displays reviews in the order returned by Google.
+- Keep the API key server-side; do not put it in React code or commit it.
 - On Vercel, `server/.env` is NOT used. You must set `API_KEY` and `PLACE_ID` in the Vercel Project → Settings → Environment Variables (Production), then redeploy.
 
 ### 4. Start the Application

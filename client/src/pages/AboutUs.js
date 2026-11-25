@@ -51,60 +51,71 @@ const AboutUs = () => {
 
   return (
     <div className="about-us">
-      {/* Hero Section */}
-      <section 
-        className="hero"
-        style={{
-          backgroundImage: `url('/images/hero/image1.jpeg')`
-        }}
-      >
-        <div className="hero-content">
-          <h1 className="hero-title">About Up-Down-Lighting</h1>
-          <p className="hero-subtitle">
-            Professional Christmas lights installation service dedicated to making your holidays bright in Bayport, Minnesota and surrounding areas.
-          </p>
-        </div>
-      </section>
-
-      {/* Company Story */}
-      <section className="section">
-        <div className="container">
-          <div className="grid grid-2" style={{ alignItems: 'center', gap: '60px' }}>
-            <div>
-              <h2 className="section-title">Our Story</h2>
-              <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '20px' }}>
-              Up-Down-Lighting was founded in 2024 out of a desire to bring joyful, professional Christmas lighting to Bayport and neighboring communities. Our story began when we noticed the magic that a well-lit home brings to a neighborhood, and set out to help others experience that same holiday cheer.
+      <section className="story-intro">
+        <div className="container story-layout">
+          <div className="story-copy">
+            <p className="story-eyebrow">About Up-Down-Lighting</p>
+            <h1>Our Story</h1>
+            <div className="story-title-rule" aria-hidden="true" />
+            <p className="story-lead">
+              Professional Christmas lights installation service dedicated to making your holidays bright in Bayport, Minnesota and surrounding areas.
+            </p>
+            <div className="story-paragraphs">
+              <p>
+                Up-Down-Lighting was founded in 2024 out of a desire to bring joyful, professional Christmas lighting to Bayport and neighboring communities. Our story began when we noticed the magic that a well-lit home brings to a neighborhood, and set out to help others experience that same holiday cheer.
               </p>
-              <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '20px' }}>
-                Our mission is simple: to transform homes and businesses into magical winter wonderlands while providing 
-                exceptional customer service and maintaining the highest standards of quality and safety.
+              <p>
+                Our mission is simple: to transform homes and businesses into magical winter wonderlands while providing exceptional customer service and maintaining the highest standards of quality and safety.
               </p>
-              <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '30px' }}>
-                We believe that Christmas lights are more than just decorations – they're a way to bring joy, create 
-                memories, and spread holiday cheer throughout our community.
+              <p>
+                We believe that Christmas lights are more than just decorations – they're a way to bring joy, create memories, and spread holiday cheer throughout our community.
               </p>
-              <Link to="/contact" className="btn btn-primary">Get to Know Us Better</Link>
             </div>
-            <div className="about-image">
-              <div className="image-placeholder">
-                <div className="placeholder-content">
-                  <img 
-                    src={aboutImage} 
-                    alt="Up-Down-Lighting owner at work" 
-                    style={{
-                      width: '100%',
-                      height: '260px',
-                      objectFit: 'cover',
-                      borderRadius: '12px',
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.13)'
-                    }}
-                  />
-                  <p>Beautiful Christmas Light Installations</p>
-                  <p>Since 2024</p>
-                </div>
-              </div>
-            </div>
+            <Link to="/contact#quote-form" className="btn btn-primary story-cta">
+              <span>Get to Know Us Better</span>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
           </div>
+
+          <figure className="story-photo-card">
+            <img
+              src={aboutImage}
+              alt="Up-Down-Lighting installer placing Christmas lights along a home’s roofline"
+              className="story-photo"
+            />
+            <figcaption className="story-photo-caption">
+              <svg
+                className="story-caption-icon"
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M24 5 15 17h6l-9 11h8l-7 9h22l-7-9h8l-9-11h6L24 5Z" />
+                <path d="M24 36v8" />
+              </svg>
+              <span className="story-caption-divider" aria-hidden="true" />
+              <span className="story-caption-text">
+                <strong>Beautiful Christmas Light Installations</strong>
+                <span>Since 2024</span>
+              </span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -200,7 +211,7 @@ const AboutUs = () => {
               Join the line of satisfied customers who trust Up-Down-Lighting for their Christmas lighting needs.
             </p>
             <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-secondary">Get Free Quote</Link>
+              <Link to="/contact#quote-form" className="btn btn-secondary">Get Free Quote</Link>
               <a href="tel:6514979609" className="btn btn-secondary">Call (651) 497-9609</a>
             </div>
           </div>
