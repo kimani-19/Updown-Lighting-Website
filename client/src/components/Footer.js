@@ -7,12 +7,12 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>Up-Down-Lighting</h3>
+            <h2>Up-Down-Lighting</h2>
             <p>Professional Christmas lights installation service in Bayport, Minnesota and surrounding areas.</p>
           </div>
           
           <div className="footer-section">
-            <h3>Quick Links</h3>
+            <h2>Quick Links</h2>
             <p><Link to="/services">Services</Link></p>
             <p><Link to="/service-areas">Service Areas</Link></p>
             <p><Link to="/gallery">Gallery</Link></p>
@@ -21,7 +21,7 @@ const Footer = () => {
           </div>
           
           <div className="footer-section">
-            <h3>Contact Info</h3>
+            <h2>Contact Info</h2>
             <p>📞 (651) 497-9609</p>
             <p>✉️ updownlighting19@gmail.com</p>
             <p>📍 Bayport, Minnesota</p>
@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
           
           <div className="footer-section">
-            <h3>Service Areas</h3>
+            <h2>Service Areas</h2>
             <p>Bayport, MN</p>
             <p>Stillwater, MN</p>
             <p>Lake Elmo, MN</p>

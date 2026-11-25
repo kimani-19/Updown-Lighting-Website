@@ -118,9 +118,9 @@ const ServiceAreas = () => {
         }}
       >
         <div className="hero-content">
-          <h1 className="hero-title">Service Areas</h1>
+          <h1 className="hero-title">Christmas Light Installation Service Areas</h1>
           <p className="hero-subtitle">
-            We proudly serve Bayport, Minnesota and surrounding communities within a 25-mile radius. 
+            UpDown Lighting provides Christmas light installation in Bayport, MN and nearby communities, including Stillwater, MN, Woodbury, MN, and Lake Elmo, MN.
             Find your city below or contact us to confirm coverage.
           </p>
         </div>

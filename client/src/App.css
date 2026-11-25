@@ -1290,7 +1290,7 @@ html {
   margin-bottom: 30px;
 }
 
-.footer-section h3 {
+.footer-section h2 {
   color: var(--accent-red);
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -1989,7 +1989,7 @@ html {
   border: 2px dashed var(--border-color);
 }
 
-.before-after-image h4 {
+.before-after-image h3 {
   color: var(--dark-gray);
   margin-bottom: 10px;
 }
@@ -2400,7 +2400,7 @@ html {
   gap: 48px;
 }
 
-.footer-section h3 {
+.footer-section h2 {
   letter-spacing: 0.01em;
 }
 
@@ -3246,7 +3246,7 @@ html {
   border-top: 4px solid var(--warm-gold);
 }
 
-.footer-section h3 {
+.footer-section h2 {
   color: var(--light-gold);
 }
 

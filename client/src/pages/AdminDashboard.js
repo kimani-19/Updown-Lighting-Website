@@ -617,7 +617,7 @@ const AdminDashboard = () => {
                     playsInline
                   />
                 ) : (
-                  <img src={image.image_url} alt={image.title} loading="lazy" />
+                  <img src={image.image_url} alt={image.title || 'Holiday lighting gallery upload'} loading="lazy" />
                 )}
                 <div>
                   <strong>{image.title}</strong>

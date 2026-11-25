@@ -74,7 +74,7 @@ const Gallery = () => {
         }}
       >
         <div className="hero-content">
-          <h1 className="hero-title">Our Gallery</h1>
+          <h1 className="hero-title">Christmas Lighting Gallery</h1>
           <p className="hero-subtitle">
             Explore our beautiful Christmas lights installations and get inspired for your own project. 
             From residential homes to commercial buildings, see the magic we create.
@@ -102,6 +102,7 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="section" style={{ paddingTop: '20px' }}>
         <div className="container">
+          <h2 className="section-title">Christmas Lighting Projects</h2>
           {loading ? (
             <div className="loading-message">
               <h3>Loading gallery images...</h3>
@@ -133,13 +134,13 @@ const Gallery = () => {
                     ) : (
                       <img
                         src={image.image_url}
-                        alt={image.title || 'Holiday lighting installation'}
+                        alt={image.description || image.title || 'Christmas light installation project by UpDown Lighting'}
                         loading="lazy"
                       />
                     )}
                   </div>
                   <div className="gallery-info">
-                    <h3 className="gallery-title">{image.title}</h3>
+                    <h3 className="gallery-title">{image.title || 'Holiday lighting project'}</h3>
                     {image.description && <p className="gallery-description">{image.description}</p>}
                     {image.category && <span className="gallery-category">{image.category}</span>}
                   </div>
@@ -222,11 +223,11 @@ const Gallery = () => {
             <div className="before-after-item">
               <div className="before-after-image">
                 <img src={beforeImage} alt="Home before Christmas light installation" loading="lazy" />
-                <h4>Before</h4>
+                <h3>Before</h3>
               </div>
               <div className="before-after-image">
                 <img src={afterImage} alt="Home after Christmas light installation" loading="lazy" />
-                <h4>After</h4>
+                <h3>After</h3>
               </div>
             </div>
           </div>

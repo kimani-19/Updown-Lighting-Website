@@ -62,7 +62,7 @@ const Services = () => {
   const services = [
     {
       icon: 'homePlug',
-      title: 'Residential Installation',
+      title: 'Residential Christmas Lighting',
       description: 'Transform your home with beautiful Christmas lights. We handle everything from design to installation.',
       features: [
         'Custom design consultation',
@@ -74,8 +74,8 @@ const Services = () => {
     },
     {
       icon: 'penTool',
-      title: 'Custom Design',
-      description: 'Unique and creative Christmas light designs tailored to your vision and property.',
+      title: 'Custom Christmas Lighting Design',
+      description: 'Unique holiday lighting designs tailored to your vision and property.',
       features: [
         '3D design mockups',
         'Color coordination',
@@ -132,9 +132,9 @@ const Services = () => {
         }}
       >
         <div className="hero-content">
-          <h1 className="hero-title">Our Services</h1>
+          <h1 className="hero-title">Christmas Light Installation Services</h1>
           <p className="hero-subtitle">
-            Professional Christmas lights installation and maintenance services for residential and commercial properties in Bayport, Minnesota.
+            Professional holiday lighting and Christmas light installation for residential and commercial properties in Bayport, Minnesota, from custom design and consultation through maintenance and seasonal removal.
           </p>
         </div>
       </section>

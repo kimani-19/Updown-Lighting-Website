@@ -10,7 +10,57 @@ import Gallery from './pages/Gallery';
 import Footer from './components/Footer';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import seoPages from './seoPages.json';
 import './App.css';
+
+const siteUrl = 'https://updownlighting.com';
+const socialImage = `${siteUrl}/images/hero/team-installation-wide-banner.jpg`;
+
+function setMetaTag(attribute, key, content) {
+  let meta = document.head.querySelector(`meta[${attribute}="${key}"]`);
+
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.setAttribute(attribute, key);
+    document.head.appendChild(meta);
+  }
+
+  meta.setAttribute('content', content);
+}
+
+function updatePageMetadata(pathname) {
+  const route = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+  const metadata = seoPages[route];
+  const isPrivateRoute = pathname.startsWith('/admin') || !metadata;
+  const title = metadata?.title || 'Administrator | UpDown Lighting';
+  const description = metadata?.description || 'Private administrator access for UpDown Lighting.';
+
+  document.title = title;
+  setMetaTag('name', 'description', description);
+  setMetaTag('property', 'og:title', title);
+  setMetaTag('property', 'og:description', description);
+  setMetaTag('property', 'og:url', `${siteUrl}${route || '/'}`);
+  setMetaTag('name', 'twitter:title', title);
+  setMetaTag('name', 'twitter:description', description);
+
+  let canonical = document.head.querySelector('link[rel="canonical"]');
+  if (isPrivateRoute) {
+    canonical?.remove();
+    setMetaTag('name', 'robots', 'noindex, nofollow');
+    return;
+  }
+
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute('href', `${siteUrl}${route}`);
+  document.head.querySelector('meta[name="robots"]')?.remove();
+  setMetaTag('property', 'og:image', socialImage);
+  setMetaTag('property', 'og:image:alt', 'UpDown Lighting team installing holiday lights on a home');
+  setMetaTag('name', 'twitter:image', socialImage);
+}
 
 function ScrollToDestination() {
   const { pathname, hash } = useLocation();
@@ -35,6 +85,10 @@ function ScrollToDestination() {
 function AppRoutes() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
+
+  useEffect(() => {
+    updatePageMetadata(location.pathname);
+  }, [location.pathname]);
 
   return (
     <>

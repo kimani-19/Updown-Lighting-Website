@@ -81,7 +81,7 @@ const Home = () => {
         }}
       >
         <div className="hero-content">
-          <h1 className="hero-title">Professional Christmas Lights Installation</h1>
+          <h1 className="hero-title">Christmas Light Installation in Bayport, MN</h1>
           <p className="hero-subtitle">
             Transform your home into a winter wonderland with our expert Christmas lights installation service in Bayport, Minnesota and surrounding areas.
           </p>

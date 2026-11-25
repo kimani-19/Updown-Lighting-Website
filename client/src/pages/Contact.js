@@ -7,8 +7,8 @@ const Contact = () => {
     {
       icon: '📞',
       title: 'Phone',
-      details: ['(651)597-9609', 'Mon-Fri: 8AM-6PM', 'Sat-Sun: 9AM-4PM'],
-      action: 'tel:6515979609'
+      details: ['(651) 497-9609', 'Mon-Fri: 8AM-6PM', 'Sat-Sun: 9AM-4PM'],
+      action: 'tel:6514979609'
     },
     {
       icon: '✉️',
@@ -74,7 +74,7 @@ const Contact = () => {
         }}
       >
         <div className="hero-content">
-          <h1 className="hero-title">Contact Us</h1>
+          <h1 className="hero-title">Contact UpDown Lighting</h1>
           <p className="hero-subtitle">
             Ready to light up your holidays? Get in touch with our team for a free quote or any questions about our Christmas lights installation services.
           </p>
@@ -170,7 +170,7 @@ const Contact = () => {
                 <h4>🚨 Emergency Service</h4>
                 <p>
                   Need urgent repairs or have a lighting emergency? 
-                  Call us at <strong>(651)597-9609"</strong> for same-day emergency service.
+                  Call us at <strong>(651) 497-9609</strong> for same-day emergency service.
                 </p>
               </div>
             </div>
@@ -199,7 +199,7 @@ const Contact = () => {
             <p style={{ fontSize: '1.2rem', marginBottom: '20px' }}>
               Still have questions? We're here to help!
             </p>
-            <a href="tel:6515979609" className="btn btn-primary">Call Us Now</a>
+            <a href="tel:6514979609" className="btn btn-primary">Call Us Now</a>
           </div>
         </div>
       </section>

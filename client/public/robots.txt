@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin
 Disallow: /api/
 
 Sitemap: https://updownlighting.com/sitemap.xml

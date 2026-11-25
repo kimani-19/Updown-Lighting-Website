@@ -73,7 +73,7 @@ const ReviewerAvatar = ({ name, photoUrl }) => {
       {photoUrl && !imageFailed ? (
         <img
           src={photoUrl}
-          alt={`${name} profile`}
+          alt={`Google reviewer ${name || 'profile'}`}
           loading="lazy"
           onError={() => setImageFailed(true)}
         />

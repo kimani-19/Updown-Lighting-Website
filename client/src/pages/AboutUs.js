@@ -55,7 +55,7 @@ const AboutUs = () => {
         <div className="container story-layout">
           <div className="story-copy">
             <p className="story-eyebrow">About Up-Down-Lighting</p>
-            <h1>Our Story</h1>
+            <h1>About UpDown Lighting</h1>
             <div className="story-title-rule" aria-hidden="true" />
             <p className="story-lead">
               Professional Christmas lights installation service dedicated to making your holidays bright in Bayport, Minnesota and surrounding areas.
